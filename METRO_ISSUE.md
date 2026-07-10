@@ -46,36 +46,32 @@ git clone https://github.com/easyhooon/hotswan-metro-confilct
 cd hotswan-metro-confilct
 ```
 
-2. Open it in Android Studio.
+2. Compile the baseline source once.
 
-3. Make sure Android Studio Live Edit is disabled.
+```bash
+./gradlew :app:compileDebugKotlin
+```
 
-4. Build and install the app once with the baseline source.
-
-5. Run the app and confirm that the screen renders.
-
-6. In `feature/src/main/kotlin/com/easyhooon/hotswanmetroconflict/ui/SampleViewModel.kt`, remove the non-assisted `SecondRepository` dependency:
+3. In `feature/src/main/kotlin/com/easyhooon/hotswanmetroconflict/ui/SampleViewModel.kt`, remove the non-assisted `SecondRepository` dependency:
 
 ```kotlin
 // Remove this constructor parameter:
 secondRepository: SecondRepository,
 ```
 
-7. Update the message so it no longer references `secondRepository`:
+4. Update the message so it no longer references `secondRepository`:
 
 ```kotlin
 val message: String = "$screenName ${firstRepository.label()}"
 ```
 
-8. Apply/deploy the change from Android Studio.
-
-Relevant build command:
+5. Compile again.
 
 ```bash
 ./gradlew :app:compileDebugKotlin
 ```
 
-Bytecode inspection commands:
+6. Inspect the generated factory and graph callsite descriptors.
 
 ```bash
 javap -classpath feature/build/intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes \
