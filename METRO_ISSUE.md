@@ -229,7 +229,7 @@ I did not find a changelog entry that clearly says this exact assisted factory c
 
 ## IDE version
 
-Android Studio. Exact version not recorded yet.
+Android Studio `2026.1.1`, build `AI-261.23567.138.2611.15503007`.
 
 ## Platform
 
