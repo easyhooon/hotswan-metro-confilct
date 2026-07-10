@@ -14,8 +14,8 @@ import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 @AssistedInject
 class SampleViewModel(
     @param:Assisted private val screenName: String,
-    private val firstRepository: FirstRepository,
-    private val secondRepository: SecondRepository,
+    firstRepository: FirstRepository,
+    secondRepository: SecondRepository,
 ) : ViewModel() {
     val message: String = "$screenName ${firstRepository.label()} ${secondRepository.label()}"
 
