@@ -12,7 +12,7 @@ HotSwan is still useful for surfacing the failure path, but this repo is focused
 - AGP: `9.0.1`
 - Compose BOM: `2026.06.00`
 - HotSwan compiler plugin: `2.0.0-beta03`
-- Metro / metrox-viewmodel / metrox-viewmodel-compose: `1.2.1`
+- Metro / metrox-viewmodel / metrox-viewmodel-compose: `1.3.0`
 - Android Studio Live Edit: disabled
 
 ## Project shape

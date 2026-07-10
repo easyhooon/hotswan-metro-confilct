@@ -9,7 +9,7 @@ The mismatch appears to be between Metro-generated classes:
 - the ViewModel `MetroFactory$Companion` exposes one `create(...)` descriptor
 - the generated `AppGraph$Impl$ActivityRetainedGraphImpl` invokes another descriptor
 
-In the real project this happened after adding/removing an unused non-assisted repository dependency from an assisted ViewModel constructor.
+In the real project this happened after adding/removing an unused non-assisted repository dependency from an assisted ViewModel constructor. I also reproduced the same descriptor mismatch in this minimal project with Metro `1.3.0`.
 
 ## Self-contained Reproducer
 
@@ -138,8 +138,8 @@ Project
   compile task: compileDebugKotlin
 
 Versions
-  Metro Gradle plugin: 1.2.1
-  Metro compiler artifact: dev.zacsweers.metro:compiler:1.2.1
+  Metro Gradle plugin: 1.3.0
+  Metro compiler artifact: dev.zacsweers.metro:compiler:1.3.0
   Kotlin Gradle plugin: 2.4.0
   Kotlin compiler: 2.4.0
   Gradle: 9.1.0
@@ -170,6 +170,7 @@ Metro compiler plugin options
     keys-per-graph-shard = 2000
     enable-switching-providers = false
     optional-binding-behavior = DEFAULT
+    diagnostics-render-mode = PLAIN
     public-scoped-provider-severity = NONE
     non-public-contribution-severity = NONE
     warn-on-inject-annotation-placement = true
@@ -186,6 +187,7 @@ Metro compiler plugin options
     desugared-provider-severity = WARN
     generate-contribution-providers = false
     enable-circuit-codegen = false
+    enable-runtime-tracing = false
     plugin-order-set = true
     enable-dagger-runtime-interop = false
     enable-kclass-to-class-interop = false
@@ -203,7 +205,7 @@ Metro compiler plugin options
 
 ## Previous working version
 
-N/A. I have only confirmed this with Metro `1.2.1`.
+N/A. I reproduced this with Metro `1.3.0`, which is the latest release I found while testing. I originally observed the same kind of mismatch on Metro `1.2.1`.
 
 ## Possibly related issues
 
@@ -223,7 +225,7 @@ Possibly related, but not the same issue:
 - https://github.com/ZacSweers/metro/issues/1708
   - Open tracking issue for FIR incremental compilation support.
 
-Metro `1.3.0` is newer than the tested `1.2.1`, but I did not find a changelog entry that clearly says this exact assisted factory callsite mismatch has been fixed.
+I did not find a changelog entry that clearly says this exact assisted factory callsite mismatch has been fixed.
 
 ## IDE version
 
